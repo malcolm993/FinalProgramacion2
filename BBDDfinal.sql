@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pelicula` (
   `nombre` VARCHAR(45) NOT NULL,
   `sinopsis` VARCHAR(100) NOT NULL,
   `apto_publico` VARCHAR(4) NOT NULL,
+  `fecha_estreno` DATE NOT NULL,
   `director` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPelicula`))
 ENGINE = InnoDB;

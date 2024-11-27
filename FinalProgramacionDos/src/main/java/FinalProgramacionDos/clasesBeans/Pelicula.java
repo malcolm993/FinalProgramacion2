@@ -4,45 +4,55 @@
  */
 package FinalProgramacionDos.clasesBeans;
 
+
 import java.io.Serializable;
 
 import jakarta.validation.constraints.Null;
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "pelicula")
 public class Pelicula implements Serializable {
-
-    private int id;
+    @Id
+    private int idPelicula;
     private int duracion_min;
-    private String nombre_pelicula;
+    private String nombre;
     private String sinopsis;
-    private String Apto_publico;
-    private String fechaDeEstreno;
+    private String apto_publico;
+    private Date fecha_estreno;
     private String director;
-    private String fotopeli;
-    private static final String FOTO_DEFAULT = "placeholder.png";
+    
 
     public Pelicula() {
-        this(0, 0, "", "", "", "", "", null);
+        this(0, 0, "", "", "", null, "");
     }
 
+    public Pelicula(int id) {
+        this.idPelicula = id;
+    }
+    
+
     public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
-            String fechaDeEstreno, String director, String foto) {
-        this.id = id;
+            Date fechaDeEstreno, String director) {
+        this.idPelicula = id;
         this.duracion_min = duracion_min;
-        this.nombre_pelicula = nombre_pelicula;
+        this.nombre = nombre_pelicula;
         this.sinopsis = sinopsis;
-        Apto_publico = apto_publico;
-        this.fechaDeEstreno = fechaDeEstreno;
+        this.apto_publico = apto_publico;
+        this.fecha_estreno = fechaDeEstreno;
         this.director = director;
-        this.fotopeli = foto;
 
     }
 
     public int getId() {
-        return id;
+        return idPelicula;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idPelicula = id;
     }
 
     public int getDuracion_min() {
@@ -54,11 +64,11 @@ public class Pelicula implements Serializable {
     }
 
     public String getNombre_pelicula() {
-        return nombre_pelicula;
+        return nombre;
     }
 
     public void setNombre_pelicula(String nombre_pelicula) {
-        this.nombre_pelicula = nombre_pelicula;
+        this.nombre = nombre_pelicula;
     }
 
     public String getSinopsis() {
@@ -70,19 +80,19 @@ public class Pelicula implements Serializable {
     }
 
     public String getApto_publico() {
-        return Apto_publico;
+        return apto_publico;
     }
 
     public void setApto_publico(String apto_publico) {
-        Apto_publico = apto_publico;
+        this.apto_publico = apto_publico;
     }
 
-    public String getFechaDeEstreno() {
-        return fechaDeEstreno;
+    public Date getFechaDeEstreno() {
+        return fecha_estreno;
     }
 
-    public void setFechaDeEstreno(String fechaDeEstreno) {
-        this.fechaDeEstreno = fechaDeEstreno;
+    public void setFechaDeEstreno(Date fechaDeEstreno) {
+        this.fecha_estreno = fechaDeEstreno;
     }
 
     public String getDirector() {
@@ -93,7 +103,7 @@ public class Pelicula implements Serializable {
         this.director = director;
     }
 
-
+    /*
     public String getFoto() {
         return fotopeli;
     }
@@ -109,9 +119,10 @@ public class Pelicula implements Serializable {
     public boolean tieneFoto() {
         return !fotopeli.equals(FOTO_DEFAULT);
     }
+*/
 
     @Override
     public String toString() {
-        return "Pelicula{" + "id=" + id + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre_pelicula  + '}';
+        return "Pelicula{" + "id=" + idPelicula + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre  + '}';
     }
 }
