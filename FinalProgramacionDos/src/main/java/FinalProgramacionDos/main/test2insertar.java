@@ -5,6 +5,11 @@
 package FinalProgramacionDos.main;
 
 import FinalProgramacionDos.clasesBeans.Pelicula;
+import java.text.ParseException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -13,15 +18,16 @@ import javax.persistence.Persistence;
  *
  * @author santi
  */
-public class Principal {
-    public static void main(String[] args) {
+public class test2insertar {
+    public static void main(String[] args) throws ParseException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cine");
         EntityManager em1= emf.createEntityManager();
-        Pelicula pelicula = em1.find(Pelicula.class, 1);
-        System.out.println(pelicula.getId());
-        System.out.println(pelicula.getNombre_pelicula());
-        System.out.println(pelicula.getDuracion_min());
-        System.out.println(pelicula.getSinopsis());
-        System.out.println(pelicula.getFechaDeEstreno());
+        String fechaEstreno = "2022-05-01";
+        SimpleDateFormat fecha= new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaPeli = fecha.parse(fechaEstreno);
+        Pelicula p1 = new Pelicula(2, 140, "EL JOKER", "PAYASO", "+18", fechaPeli, "Fulano");
+        em1.getTransaction().begin();
+        em1.persist(p1);
+        em1.getTransaction().commit();
     }
 }
